@@ -21,7 +21,7 @@ Below is the architecture of the system used to drive CARLA. There are three nod
 
 3. **Traffic Light Detection node**
     
-    This package contains: `tl_detector.py`. We could build both a traffic light detection node and a traffic light classification node. Traffic light detection should take place within `tl_detector.py`, whereas traffic light classification should take place within `../tl_detector/light_classification_model/tl_classfier.py`. Since my personal time limited, I only directly grab the TL info from the topics coming in. This part of work can be done in future.
+    This package contains: `tl_detector.py`. We could build both a traffic light detection node and a traffic light classification node. Traffic light detection should take place within `tl_detector.py`, whereas traffic light classification should take place within `../tl_detector/light_classification_model/tl_classfier.py`. Since my personal time limited, I directly grab the TL info from the topics coming in. This part of work can be done in future.
     - Subscribes to topics: `/image_color`, `/current_pose`, `/base_waypoints`
     - Publishes to topics: `/traffic_waypoint topic`
 

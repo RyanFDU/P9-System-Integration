@@ -8,16 +8,19 @@ Below is the architecture of the system used to drive CARLA. There are three nod
 ![structure](project_structure.png)
 
 1. **Waypoint Updater Node**
+
     This package contains `waypoint_updater.py`. The purpose of this node is to update the target velocity property of each waypoint based on traffic light and obstacle detection data.
     - Subscribes to topics: `/base_waypoints`, `/current_pose`, `/obstacle_waypoint`, `/traffic_waypoint topics`
     - Publishes to topics: `/final_waypoints topic`
 
 2. **DBW node**
+
    This package contains: `DBW.py` and `twist_controller.py`. DBWNode subscribes to the current velocity and way points that are published by waypoint_updator node. These topics are then processed by using two controllers to determine the final throttle, steering and brake ratio, to maneuver the vehicle smoothly along the waypoints.
     - Subscribes to topics: `/current velocity`, `/twist_cmd`, `/dbw_enabled`
     - Publishes to topics: `/steering_cmd`, `/throttle_cmd`, `/brake_cmd`
 
 3. **Traffic detection node**
+    
     This package contains: `tl_detector.py`. We could build both a traffic light detection node and a traffic light classification node. Traffic light detection should take place within `tl_detector.py`, whereas traffic light classification should take place within `../tl_detector/light_classification_model/tl_classfier.py`. Since my personal time limited, I only directly grab the TL info from the topics coming in. This part of work can be done in future.
     - Subscribes to topics: `/image_color`, `/current_pose`, `/base_waypoints`
     - Publishes to topics: `/traffic_waypoint topic`
